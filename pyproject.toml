@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "podval-bot"
+version = "0.1.0"
+description = ""
+authors = ["Roman Solomatin <36135455+Samoed@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.7.1"
+ruff = "^0.1.6"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+[tool.ruff]
+extend-select= [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+    "RUF", # ruff
+]
+fix = true
+target-version = "py38"
+line-length = 120
+
+[tool.mypy]
+python_version = "3.8"
+strict = true
+warn_redundant_casts = true
+plugins = ["numpy.typing.mypy_plugin"]
+
+[[tool.mypy.overrides]]
+module = [
+    "scipy",
+    "sklearn",
+]
+ignore_missing_imports = true
