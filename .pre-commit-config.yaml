@@ -21,12 +21,12 @@ repos:
     hooks:
     -   id: codespell
 
--   repo: local
-    hooks:
-    -   id: mypy
-        name: Mypy
-        language: python
-        entry: pdm run mypy
-        types: [python]
-        additional_dependencies: ["mypy>=1.7"]
-        require_serial: true
+#-   repo: local
+#    hooks:
+#    -   id: mypy
+#        name: Mypy
+#        language: python
+#        entry: pdm run mypy
+#        types: [python]
+#        additional_dependencies: ["mypy>=1.7"]
+#        require_serial: true

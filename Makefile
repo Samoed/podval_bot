@@ -24,7 +24,7 @@ export-dependencies:
 
 .PHONY: database
 database:
-	docker run --name postgresql -e POSTGRES_USER=myusername -e POSTGRES_PASSWORD=mypassword -p 5432:5432 -d postgres
+	docker compose up database -d
 
 .PHONY: test
 test:
@@ -37,15 +37,15 @@ migrate:
 
 .PHONY: downgrade
 downgrade:
-	alembic downgrade -1
+	poetry run alembic downgrade -1
 
 .PHONY: upgrade
 upgrade:
-	alembic upgrade +1
+	poetry run alembic upgrade +1
 
 .PHONY: upgrade-offline
 upgrade-offline:
-	alembic upgrade head --sql
+	poetry run alembic upgrade head --sql
 
 .PHONY: all
 all: format export-dependencies
