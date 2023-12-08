@@ -17,3 +17,25 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+  migrate_db:
+    build: .
+    env_file:
+      - .env
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      POSTGRES_HOST: database
+    command: ["python", "-m", "alembic", "upgrade", "head"]
+
+  bot:
+    build: .
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      POSTGRES_HOST: database
