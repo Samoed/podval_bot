@@ -75,21 +75,19 @@ async def greet_chat_members(update: Update, context: ContextTypes.DEFAULT_TYPE)
         return
 
     was_member, is_member = result
-    cause_name = update.chat_member.from_user.mention_html()
-    member_name = update.chat_member.new_chat_member.user.mention_html()
+    member_username = update.chat_member.new_chat_member.user.username
 
     if not was_member and is_member:
-        # TODO TODO TODO
-        logger.info("New member {}", member_name)
+        logger.info("New member {}", member_username)
         await update.effective_chat.send_message(
-            f"{member_name} was added by {cause_name}. Welcome!",
-            parse_mode=ParseMode.HTML,
+            f"Добро пожаловать в чат, {member_username}! Заполни, пожалуйста, [анкету](https://docs.google.com/spreadsheets/d/12RuhcpwpdIgIfKq5pVkbMcqRe3b6MAt8OtedMURg2Sg/edit#gid=0)",
+            parse_mode=ParseMode.MARKDOWN,
         )
-    # elif was_member and not is_member:
-    #     await update.effective_chat.send_message(
-    #         f"{member_name} is no longer with us. Thanks a lot, {cause_name} ...",
-    #         parse_mode=ParseMode.HTML,
-    #     )
+    elif was_member and not is_member:
+        await context.bot.send_message(
+            settings.admin_chat_id,
+            text=f"{member_username} покинул чат",
+        )
 
 
 async def sync_birthdays_table(context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -106,13 +104,25 @@ async def sync_birthdays_table(context: ContextTypes.DEFAULT_TYPE) -> None:
     nicknames = birthday_table["Имя"].tolist()
     birthdays = birthday_table["День Рождения"].tolist()
     try:
-        users = await RepoUser.create_or_update_users(usernames, nicknames, birthdays)
+        (users, removed_users) = await RepoUser.create_or_update_users(usernames, nicknames, birthdays)
     except Exception as e:
         logger.exception(e)
         await context.bot.send_message(settings.admin_chat_id, text=f"Error: {e}")
         return
-    logger.info(f"Created or updated {len(users)} users")
+    logger.info(
+        "Created {} users: {}. Removed {} users from database: {}",
+        len(users),
+        ", ".join(user.username for user in users),
+        len(removed_users),
+        ", ".join(user.username for user in removed_users),
+    )
     await context.bot.send_message(settings.admin_chat_id, text=f"Synced table. Created {len(users)} users")
+
+
+async def ping(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Ping bot."""
+    logger.info("Ping {}", update.message.chat.id)
+    await update.message.reply_text("Pong")
 
 
 async def send_menu(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -135,11 +145,12 @@ def main() -> None:
 
     application.add_handler(ChatMemberHandler(greet_chat_members, ChatMemberHandler.CHAT_MEMBER))
     application.add_handler(CommandHandler("menu", send_menu))
+    application.add_handler(CommandHandler("ping", ping))
     # todo test remove
     t = datetime.now(pytz.timezone(settings.timezone)) + timedelta(seconds=10)
     print(t)
-    # application.job_queue.run_daily(sync_birthdays_table, t)
-    application.job_queue.run_daily(check_birthdays, t)  # type: ignore
+    application.job_queue.run_daily(sync_birthdays_table, t)
+    application.job_queue.run_daily(check_birthdays, t + timedelta(seconds=10))  # type: ignore
     application.run_polling(allowed_updates=Update.ALL_TYPES)
 
 

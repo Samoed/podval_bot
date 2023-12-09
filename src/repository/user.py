@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import extract, select
+from sqlalchemy import delete, extract, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.database import User, get_session
@@ -47,9 +47,17 @@ class RepoUser:
         ).all()  # type: ignore
 
     @staticmethod
+    async def remove_users(usernames: list[str], session: AsyncSession | None = None) -> list[User]:
+        session = session or await get_session()
+        to_delete = (await session.scalars(select(User).where(User.username.notin_(usernames)))).all()
+        await session.execute(delete(User).where(User.username.notin_(usernames)))
+        await session.commit()
+        return to_delete  # type: ignore
+
+    @staticmethod
     async def create_or_update_users(
         usernames: list[str], nicknames: list[str], birthdays: list[datetime], session: AsyncSession | None = None
-    ) -> list[User]:
+    ) -> tuple[list[User], list[User]]:
         session = session or await get_session()
         fixed_usernames = [username if username[0] == "@" else "@" + username for username in usernames]
         users = (await session.scalars(select(User).where(User.username.in_(fixed_usernames)))).all()
@@ -63,4 +71,5 @@ class RepoUser:
                 new_users.append(User(username=username, nickname=nickname, birthday=birthday))
         session.add_all(new_users)
         await session.commit()
-        return new_users
+        to_delete_users = await RepoUser.remove_users(fixed_usernames, session)
+        return new_users, to_delete_users
