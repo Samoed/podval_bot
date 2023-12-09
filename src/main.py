@@ -144,6 +144,26 @@ async def send_menu(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text("Menu sent")
 
 
+async def show_menu(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    await update.message.reply_text(
+        """Альманах рецептов подвала:
+        - [Таблица](https://docs.google.com/spreadsheets/d/1RWEh_VfmwvQC7PUXSIAjYruSO-cVYerEMvCcNu0H2EM/edit?usp=drivesdk)
+        - [Канал](https://t.me/+JemdAcrclhIzODcy)
+        """,
+        parse_mode=ParseMode.MARKDOWN,
+    )
+
+
+async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    await update.message.reply_text(
+        """Доступные команды:
+        /menu название - отправить меню в канал
+        /show_menu - показать ссылку на меню
+        /ping - пинг бота
+        """
+    )
+
+
 def main() -> None:
     """Start the bot."""
     logger.info("start bot")
@@ -153,6 +173,8 @@ def main() -> None:
     application.add_handler(ChatMemberHandler(greet_chat_members, ChatMemberHandler.CHAT_MEMBER))
     application.add_handler(CommandHandler("menu", send_menu))
     application.add_handler(CommandHandler("ping", ping))
+    application.add_handler(CommandHandler("show_menu", show_menu))
+    application.add_handler(CommandHandler("help", help_command))
 
     application.job_queue.run_daily(sync_birthdays_table, time=time(10, 0, tzinfo=time_zone))
     application.job_queue.run_daily(check_birthdays, time=time(8, 0, tzinfo=time_zone))
