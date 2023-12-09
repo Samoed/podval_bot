@@ -9,6 +9,7 @@ from telegram.ext import (
     CommandHandler,
     ContextTypes,
 )
+from texts import HELP_TEXT, MENU_TEXT
 
 from src.logger import get_logger
 from src.repository.user import RepoUser
@@ -71,7 +72,12 @@ async def greet_chat_members(update: Update, context: ContextTypes.DEFAULT_TYPE)
     if update.chat_member is None:
         return
     result = extract_status_change(update.chat_member)
-    if result is None or update.chat_member is None or update.effective_chat is None:
+    if (
+        result is None
+        or update.chat_member is None
+        or update.effective_chat is None
+        or update.effective_chat.id != settings.chat_id
+    ):
         return
 
     was_member, is_member = result
@@ -146,21 +152,14 @@ async def send_menu(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 async def show_menu(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(
-        """Альманах рецептов подвала:
-        - [Таблица](https://docs.google.com/spreadsheets/d/1RWEh_VfmwvQC7PUXSIAjYruSO-cVYerEMvCcNu0H2EM/edit?usp=drivesdk)
-        - [Канал](https://t.me/+JemdAcrclhIzODcy)
-        """,
+        MENU_TEXT,
         parse_mode=ParseMode.MARKDOWN,
     )
 
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(
-        """Доступные команды:
-        /menu название - отправить меню в канал
-        /show_menu - показать ссылку на меню
-        /ping - пинг бота
-        """
+        HELP_TEXT,
     )
 
 
