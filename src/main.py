@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, time
 
 import pytz
 from telegram import ChatMember, ChatMemberUpdated, Update
@@ -124,7 +124,7 @@ async def ping(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Ping bot."""
     if update.message is None:
         return
-    logger.info("Ping {}", update.message.chat.id)
+    logger.info(f"Ping {update.message.chat.id}")
     await update.message.reply_text("Pong")
 
 
@@ -136,24 +136,26 @@ async def send_menu(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if update.message.reply_to_message is None:
         await update.message.reply_text("Reply to message with menu")
         return
-    await context.bot.forward_message(
-        settings.menu_channel_id, update.message.chat_id, update.message.reply_to_message.message_id
+    dish_name = context.args[0]
+    message_url = f"https://t.me/c/1563220312/{update.message.reply_to_message.message_id}"
+    await context.bot.send_message(
+        settings.menu_channel_id, text=f"{message_url} {dish_name}", parse_mode=ParseMode.MARKDOWN
     )
+    await update.message.reply_text("Menu sent")
 
 
 def main() -> None:
     """Start the bot."""
     logger.info("start bot")
+    time_zone = pytz.timezone(settings.timezone)
     application = Application.builder().token(settings.token).build()
 
     application.add_handler(ChatMemberHandler(greet_chat_members, ChatMemberHandler.CHAT_MEMBER))
     application.add_handler(CommandHandler("menu", send_menu))
     application.add_handler(CommandHandler("ping", ping))
-    # todo test remove
-    t = datetime.now(pytz.timezone(settings.timezone)) + timedelta(seconds=10)
-    print(t)
-    application.job_queue.run_daily(sync_birthdays_table, t)
-    application.job_queue.run_daily(check_birthdays, t + timedelta(seconds=10))  # type: ignore
+
+    application.job_queue.run_daily(sync_birthdays_table, time=time(10, 0, tzinfo=time_zone))
+    application.job_queue.run_daily(check_birthdays, time=time(8, 0, tzinfo=time_zone))
     application.run_polling(allowed_updates=Update.ALL_TYPES)
 
 
