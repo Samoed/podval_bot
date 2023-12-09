@@ -47,5 +47,9 @@ upgrade:
 upgrade-offline:
 	poetry run alembic upgrade head --sql
 
+.PHONY: deploy
+deploy:
+	docker compose up -d --build
+
 .PHONY: all
 all: format export-dependencies

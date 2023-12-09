@@ -110,17 +110,20 @@ async def sync_birthdays_table(context: ContextTypes.DEFAULT_TYPE) -> None:
         await context.bot.send_message(settings.admin_chat_id, text=f"Error: {e}")
         return
     logger.info(
-        "Created {} users: {}. Removed {} users from database: {}",
-        len(users),
-        ", ".join(user.username for user in users),
-        len(removed_users),
-        ", ".join(user.username for user in removed_users),
+        "Created {} users: {}. Removed {} users from database: {}".format(
+            len(users),
+            ", ".join(user.username for user in users),
+            len(removed_users),
+            ", ".join(user.username for user in removed_users),
+        )
     )
     await context.bot.send_message(settings.admin_chat_id, text=f"Synced table. Created {len(users)} users")
 
 
 async def ping(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Ping bot."""
+    if update.message is None:
+        return
     logger.info("Ping {}", update.message.chat.id)
     await update.message.reply_text("Pong")
 
