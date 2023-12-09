@@ -9,7 +9,7 @@ from telegram.ext import (
     CommandHandler,
     ContextTypes,
 )
-from texts import HELP_TEXT, MENU_TEXT
+from texts import HELP_TEXT, JOIN_MESSAGE, MENU_TEXT
 
 from src.logger import get_logger
 from src.repository.user import RepoUser
@@ -86,7 +86,7 @@ async def greet_chat_members(update: Update, context: ContextTypes.DEFAULT_TYPE)
     if not was_member and is_member:
         logger.info("New member {}", member_username)
         await update.effective_chat.send_message(
-            f"Добро пожаловать в чат, {member_username}! Заполни, пожалуйста, [анкету](https://docs.google.com/spreadsheets/d/12RuhcpwpdIgIfKq5pVkbMcqRe3b6MAt8OtedMURg2Sg/edit#gid=0)",
+            JOIN_MESSAGE.format(member_username),
             parse_mode=ParseMode.MARKDOWN,
         )
     elif was_member and not is_member:
