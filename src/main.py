@@ -142,7 +142,7 @@ async def send_menu(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if update.message.reply_to_message is None:
         await update.message.reply_text("Reply to message with menu")
         return
-    dish_name = context.args[0]
+    dish_name = " ".join(context.args)
     message_url = f"https://t.me/c/1563220312/{update.message.reply_to_message.message_id}"
     await context.bot.send_message(
         settings.menu_channel_id, text=f"{message_url} {dish_name}", parse_mode=ParseMode.MARKDOWN
