@@ -1,3 +1,4 @@
+name: deploy
 # https://www.programonaut.com/how-to-deploy-a-git-repository-to-a-server-using-github-actions/
 on:
   push:
@@ -19,6 +20,6 @@ jobs:
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
     - name: connect and pull
-      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd podval_bot && git pull && docker rm -f bot && make deploy && exit"
+      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd podval_bot && git pull && make deploy && exit"
     - name: cleanup
       run: rm -rf ~/.ssh

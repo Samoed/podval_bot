@@ -81,7 +81,11 @@ async def greet_chat_members(update: Update, context: ContextTypes.DEFAULT_TYPE)
         return
 
     was_member, is_member = result
-    member_username = update.chat_member.new_chat_member.user.username
+    member_username = (
+        "@" + update.chat_member.new_chat_member.user.username
+        if update.chat_member.new_chat_member.user.username is not None
+        else update.chat_member.new_chat_member.user.full_name
+    )
 
     if not was_member and is_member:
         logger.info("New member {}", member_username)
