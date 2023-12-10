@@ -175,8 +175,8 @@ def main() -> None:
     application.add_handler(CommandHandler("show_menu", show_menu))
     application.add_handler(CommandHandler("help", help_command))
 
-    application.job_queue.run_daily(sync_birthdays_table, time=time(10, 0, tzinfo=time_zone))
-    application.job_queue.run_daily(check_birthdays, time=time(8, 0, tzinfo=time_zone))
+    application.job_queue.run_daily(sync_birthdays_table, time=time(8, tzinfo=time_zone))
+    application.job_queue.run_daily(check_birthdays, time=time(10, tzinfo=time_zone))
     application.run_polling(allowed_updates=Update.ALL_TYPES)
 
 
