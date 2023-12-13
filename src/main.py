@@ -84,11 +84,11 @@ async def greet_chat_members(update: Update, context: ContextTypes.DEFAULT_TYPE)
     member_username = update.chat_member.new_chat_member.user.username
 
     if not was_member and is_member:
-        logger.info("New member {}", member_username)
         await update.effective_chat.send_message(
             JOIN_MESSAGE.format(member_username),
             parse_mode=ParseMode.MARKDOWN,
         )
+        logger.info("New member {}".format(member_username))
     elif was_member and not is_member:
         await context.bot.send_message(
             settings.admin_chat_id,
