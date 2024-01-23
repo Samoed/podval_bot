@@ -12,3 +12,5 @@ HELP_TEXT = """Доступные команды:
 JOIN_MESSAGE = """
 Добро пожаловать в чат, {}! Заполни, пожалуйста, [анкету](https://docs.google.com/spreadsheets/d/12RuhcpwpdIgIfKq5pVkbMcqRe3b6MAt8OtedMURg2Sg/edit#gid=0)
 """
+
+HOROSCOPE_PROMPT = "Сгенерируй абсурдный гороскоп на сегодня"
