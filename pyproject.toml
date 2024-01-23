@@ -17,6 +17,7 @@ aiohttp = "^3.9.1"
 pandas = "^2.1.4"
 openpyxl = "^3.1.2"
 alembic = "^1.13.0"
+openai = "^1.9.0"
 
 
 [tool.poetry.group.dev.dependencies]

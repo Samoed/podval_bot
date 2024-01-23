@@ -10,6 +10,7 @@ from telegram.ext import (
     ContextTypes,
 )
 
+from src.llm import LLM
 from src.logger import get_logger
 from src.repository.user import RepoUser
 from src.settings import Settings
@@ -37,6 +38,22 @@ async def check_birthdays(context: ContextTypes.DEFAULT_TYPE) -> None:
             settings.chat_id,
             text=f"Самое время поздравить {user.username} с Днём Рождения!🎉✨",  # noqa
         )
+
+
+async def send_horoscope(context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Send horoscope to the chat."""
+    logger.info("Sending horoscope")
+    try:
+        horoscope = LLM.generate_horoscope()
+    except Exception as e:
+        logger.exception(e)
+        await context.bot.send_message(settings.admin_chat_id, text=f"Error: {e}")
+        return
+    await context.bot.send_message(
+        settings.chat_id,
+        text=horoscope,
+        parse_mode=ParseMode.MARKDOWN,
+    )
 
 
 def extract_status_change(chat_member_update: ChatMemberUpdated) -> tuple[bool, bool] | None:
@@ -201,6 +218,7 @@ def main() -> None:
     application.job_queue.run_daily(sync_birthdays_table, time=time(8, tzinfo=time_zone))
     application.job_queue.run_daily(check_birthdays, time=time(10, tzinfo=time_zone))
     application.job_queue.run_daily(good_morning, time=time(8, tzinfo=time_zone))
+    application.job_queue.run_daily(send_horoscope, time=time(9, tzinfo=time_zone))
     application.run_polling(allowed_updates=Update.ALL_TYPES)
 
 
