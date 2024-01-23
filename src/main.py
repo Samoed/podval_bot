@@ -9,11 +9,11 @@ from telegram.ext import (
     CommandHandler,
     ContextTypes,
 )
-from texts import HELP_TEXT, JOIN_MESSAGE, MENU_TEXT
 
 from src.logger import get_logger
 from src.repository.user import RepoUser
 from src.settings import Settings
+from src.texts import HELP_TEXT, JOIN_MESSAGE, MENU_TEXT
 from src.utils import update_table
 
 logger = get_logger(__name__)
@@ -87,12 +87,19 @@ async def greet_chat_members(update: Update, context: ContextTypes.DEFAULT_TYPE)
         else update.chat_member.new_chat_member.user.full_name
     )
 
+    logger.info(
+        "used_memer username {} real username {} fullname {}",
+        member_username,
+        update.chat_member.new_chat_member.user.username,
+        update.chat_member.new_chat_member.user.full_name,
+    )
+
     if not was_member and is_member:
         await update.effective_chat.send_message(
             JOIN_MESSAGE.format(member_username),
             parse_mode=ParseMode.MARKDOWN,
         )
-        logger.info("New member {}".format(member_username))
+        logger.info(f"New member {member_username}")
     elif was_member and not is_member:
         await context.bot.send_message(
             settings.admin_chat_id,
@@ -130,6 +137,10 @@ async def sync_birthdays_table(context: ContextTypes.DEFAULT_TYPE) -> None:
     await context.bot.send_message(settings.admin_chat_id, text=f"Synced table. Created {len(users)} users")
 
 
+async def good_morning(context: ContextTypes.DEFAULT_TYPE) -> None:
+    await context.bot.send_message(settings.chat_id, text="Доброе утро, чач!")
+
+
 async def ping(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Ping bot."""
     if update.message is None:
@@ -143,9 +154,10 @@ async def send_menu(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     logger.info("Sending menu")
     if update.message is None:
         return
-    if update.message.reply_to_message is None:
+    if update.message.reply_to_message is None or context.args is None or len(context.args) == 0:
         await update.message.reply_text("Reply to message with menu")
         return
+
     dish_name = " ".join(context.args)
     message_url = f"https://t.me/c/1563220312/{update.message.reply_to_message.message_id}"
     await context.bot.send_message(
@@ -155,6 +167,8 @@ async def send_menu(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 async def show_menu(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    if update.message is None:
+        return
     await update.message.reply_text(
         MENU_TEXT,
         parse_mode=ParseMode.MARKDOWN,
@@ -162,6 +176,8 @@ async def show_menu(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    if update.message is None:
+        return
     await update.message.reply_text(
         HELP_TEXT,
     )
@@ -179,8 +195,12 @@ def main() -> None:
     application.add_handler(CommandHandler("show_menu", show_menu))
     application.add_handler(CommandHandler("help", help_command))
 
+    if application.job_queue is None:
+        return
+
     application.job_queue.run_daily(sync_birthdays_table, time=time(8, tzinfo=time_zone))
     application.job_queue.run_daily(check_birthdays, time=time(10, tzinfo=time_zone))
+    application.job_queue.run_daily(good_morning, time=time(8, tzinfo=time_zone))
     application.run_polling(allowed_updates=Update.ALL_TYPES)
 
 
