@@ -204,7 +204,6 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
 
 
 async def send_support_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    """reply with supportive message for every 20th message and select random message from json file"""
     if update.message is None:
         return
     if update.message.chat.id != settings.chat_id:

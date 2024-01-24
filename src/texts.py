@@ -1,6 +1,9 @@
 import json
+import os
 
-with open("../phrases/supportive.json") as f:
+directory = os.path.dirname(os.path.abspath(__file__))
+
+with open(os.path.join(directory, "../phrases/supportive.json")) as f:
     SUPPORTIVE_PHRASES = json.load(f)
 
 MENU_TEXT = """Альманах рецептов подвала:
