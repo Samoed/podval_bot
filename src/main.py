@@ -208,7 +208,7 @@ async def send_support_message(update: Update, context: ContextTypes.DEFAULT_TYP
         return
     if update.message.chat.id != settings.chat_id:
         return
-    if update.message.message_id % 20 != 0:
+    if update.message.message_id % 50 != 0:
         return
 
     await update.message.reply_text(SUPPORTIVE_PHRASES[random.randint(0, len(SUPPORTIVE_PHRASES) - 1)])
