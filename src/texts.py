@@ -21,4 +21,6 @@ JOIN_MESSAGE = """
 Добро пожаловать в чат, {}! Заполни, пожалуйста, [анкету](https://docs.google.com/spreadsheets/d/12RuhcpwpdIgIfKq5pVkbMcqRe3b6MAt8OtedMURg2Sg/edit#gid=0)
 """
 
-HOROSCOPE_PROMPT = "Сгенерируй абсурдный гороскоп на сегодня"
+HOROSCOPE_PROMPT = (
+    "Сгенерируй абсурдный гороскоп на сегодня. Пиши текст сразу. Каждый знак зодиака должен быть в отдельной строчке."
+)
