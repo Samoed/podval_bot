@@ -1,3 +1,4 @@
+import random
 from datetime import datetime, time
 
 import pytz
@@ -8,12 +9,14 @@ from telegram.ext import (
     ChatMemberHandler,
     CommandHandler,
     ContextTypes,
+    MessageHandler,
+    filters,
 )
 
 from src.logger import get_logger
 from src.repository.user import RepoUser
 from src.settings import Settings
-from src.texts import HELP_TEXT, JOIN_MESSAGE, MENU_TEXT
+from src.texts import HELP_TEXT, JOIN_MESSAGE, MENU_TEXT, SUPPORTIVE_PHRASES
 from src.utils import update_table
 
 logger = get_logger(__name__)
@@ -183,6 +186,18 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
     )
 
 
+async def send_support_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """reply with supportive message for every 20th message and select random message from json file"""
+    if update.message is None:
+        return
+    if update.message.chat.id != settings.chat_id:
+        return
+    if update.message.message_id % 20 != 0:
+        return
+
+    await update.message.reply_text(SUPPORTIVE_PHRASES[random.randint(0, len(SUPPORTIVE_PHRASES) - 1)])
+
+
 def main() -> None:
     """Start the bot."""
     logger.info("start bot")
@@ -194,6 +209,7 @@ def main() -> None:
     application.add_handler(CommandHandler("ping", ping))
     application.add_handler(CommandHandler("show_menu", show_menu))
     application.add_handler(CommandHandler("help", help_command))
+    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, send_support_message))
 
     if application.job_queue is None:
         return

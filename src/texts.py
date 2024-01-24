@@ -1,3 +1,8 @@
+import json
+
+with open("../phrases/supportive.json") as f:
+    SUPPORTIVE_PHRASES = json.load(f)
+
 MENU_TEXT = """Альманах рецептов подвала:
 - [Таблица](https://docs.google.com/spreadsheets/d/1RWEh_VfmwvQC7PUXSIAjYruSO-cVYerEMvCcNu0H2EM/edit?usp=drivesdk)
 - [Канал](https://t.me/+JemdAcrclhIzODcy)
