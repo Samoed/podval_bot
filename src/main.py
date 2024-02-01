@@ -17,7 +17,7 @@ from src.llm import LLM
 from src.logger import get_logger
 from src.repository.user import RepoUser
 from src.settings import Settings
-from src.texts import HELP_TEXT, JOIN_MESSAGE, MENU_TEXT, SUPPORTIVE_PHRASES
+from src.texts import HELP_TEXT, JOIN_MESSAGE, MENU_TEXT, SUPPORTIVE_PHRASES, USER_SUPPORTIVE
 from src.utils import update_table
 
 logger = get_logger(__name__)
@@ -210,7 +210,9 @@ async def send_support_message(update: Update, context: ContextTypes.DEFAULT_TYP
         return
     if update.message.message_id % 50 != 0:
         return
-
+    elif update.message.message_id % 250 == 0:
+        await update.message.reply_text(USER_SUPPORTIVE[random.randint(0, len(USER_SUPPORTIVE) - 1)])
+        return
     await update.message.reply_text(SUPPORTIVE_PHRASES[random.randint(0, len(SUPPORTIVE_PHRASES) - 1)])
 
 
@@ -228,9 +230,9 @@ def add_jobs(application: Application, time_zone_str: str) -> None:
     if application.job_queue is None:
         raise ValueError("Job queue is None")
     application.job_queue.run_daily(sync_birthdays_table, time=time(8, tzinfo=time_zone))
-    application.job_queue.run_daily(check_birthdays, time=time(10, tzinfo=time_zone))
+    application.job_queue.run_daily(check_birthdays, time=time(9, tzinfo=time_zone))
     application.job_queue.run_daily(good_morning, time=time(8, tzinfo=time_zone))
-    application.job_queue.run_daily(send_horoscope, time=time(9, tzinfo=time_zone))
+    application.job_queue.run_daily(send_horoscope, time=time(8, 30, tzinfo=time_zone))
 
 
 def main() -> None:

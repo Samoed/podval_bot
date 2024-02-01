@@ -6,6 +6,9 @@ directory = os.path.dirname(os.path.abspath(__file__))
 with open(os.path.join(directory, "../phrases/supportive.json")) as f:
     SUPPORTIVE_PHRASES = json.load(f)
 
+with open(os.path.join(directory, "../phrases/user_supportive.json")) as f:
+    USER_SUPPORTIVE = json.load(f)
+
 MENU_TEXT = """Альманах рецептов подвала:
 - [Таблица](https://docs.google.com/spreadsheets/d/1RWEh_VfmwvQC7PUXSIAjYruSO-cVYerEMvCcNu0H2EM/edit?usp=drivesdk)
 - [Канал](https://t.me/+JemdAcrclhIzODcy)
