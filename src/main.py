@@ -214,12 +214,7 @@ async def send_support_message(update: Update, context: ContextTypes.DEFAULT_TYP
     await update.message.reply_text(SUPPORTIVE_PHRASES[random.randint(0, len(SUPPORTIVE_PHRASES) - 1)])
 
 
-def main() -> None:
-    """Start the bot."""
-    logger.info("start bot")
-    time_zone = pytz.timezone(settings.timezone)
-    application = Application.builder().token(settings.token).build()
-
+def add_handlers(application: Application) -> None:
     application.add_handler(ChatMemberHandler(greet_chat_members, ChatMemberHandler.CHAT_MEMBER))
     application.add_handler(CommandHandler("menu", send_menu))
     application.add_handler(CommandHandler("ping", ping))
@@ -227,13 +222,26 @@ def main() -> None:
     application.add_handler(CommandHandler("help", help_command))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, send_support_message))
 
-    if application.job_queue is None:
-        return
 
+def add_jobs(application: Application, time_zone_str: str) -> None:
+    time_zone = pytz.timezone(time_zone_str)
+    if application.job_queue is None:
+        raise ValueError("Job queue is None")
     application.job_queue.run_daily(sync_birthdays_table, time=time(8, tzinfo=time_zone))
     application.job_queue.run_daily(check_birthdays, time=time(10, tzinfo=time_zone))
     application.job_queue.run_daily(good_morning, time=time(8, tzinfo=time_zone))
     application.job_queue.run_daily(send_horoscope, time=time(9, tzinfo=time_zone))
+
+
+def main() -> None:
+    """Start the bot."""
+    logger.info("start bot")
+
+    application = Application.builder().token(settings.token).build()
+
+    add_handlers(application)
+    add_jobs(application, settings.timezone)
+
     application.run_polling(allowed_updates=Update.ALL_TYPES)
 
 
