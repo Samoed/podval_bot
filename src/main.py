@@ -24,6 +24,12 @@ logger = get_logger(__name__)
 settings = Settings()
 
 
+def escape_markdown(text: str) -> str:
+    """https://core.telegram.org/bots/api#markdownv2-style"""
+    escape_chars = r"_*[]()~`>#-|{}.!+="
+    return "".join(f"\\{char}" if char in escape_chars else char for char in text)
+
+
 async def check_birthdays(context: ContextTypes.DEFAULT_TYPE) -> None:
     """Check if there are any birthdays today and send a message to the chat."""
     logger.info("Checking birthdays")
@@ -106,12 +112,14 @@ async def greet_chat_members(update: Update, context: ContextTypes.DEFAULT_TYPE)
         if update.chat_member.new_chat_member.user.username is not None
         else update.chat_member.new_chat_member.user.full_name
     )
+    member_username = escape_markdown(member_username)
 
     logger.info(
-        "used_memer username {} real username {} fullname {}",
-        member_username,
-        update.chat_member.new_chat_member.user.username,
-        update.chat_member.new_chat_member.user.full_name,
+        "used_memer username {} real username {} fullname {}".format(
+            member_username,
+            update.chat_member.new_chat_member.user.username,
+            update.chat_member.new_chat_member.user.full_name,
+        )
     )
 
     if not was_member and is_member:
@@ -157,8 +165,8 @@ async def sync_birthdays_table(context: ContextTypes.DEFAULT_TYPE) -> None:
     await context.bot.send_message(settings.admin_chat_id, text=f"Synced table. Created {len(users)} users")
 
 
-async def good_morning(context: ContextTypes.DEFAULT_TYPE) -> None:
-    await context.bot.send_message(settings.chat_id, text="Доброе утро, чач!")
+# async def good_morning(context: ContextTypes.DEFAULT_TYPE) -> None:
+#     await context.bot.send_message(settings.chat_id, text="Доброе утро, чач!")
 
 
 async def ping(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -231,7 +239,7 @@ def add_jobs(application: Application, time_zone_str: str) -> None:
         raise ValueError("Job queue is None")
     application.job_queue.run_daily(sync_birthdays_table, time=time(8, tzinfo=time_zone))
     application.job_queue.run_daily(check_birthdays, time=time(9, tzinfo=time_zone))
-    application.job_queue.run_daily(good_morning, time=time(8, tzinfo=time_zone))
+    # application.job_queue.run_daily(good_morning, time=time(8, tzinfo=time_zone))
     application.job_queue.run_daily(send_horoscope, time=time(8, 30, tzinfo=time_zone))
 
 
