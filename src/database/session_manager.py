@@ -1,3 +1,5 @@
+from functools import wraps
+
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
 from src.settings import Settings
@@ -24,7 +26,17 @@ class SessionManager:
         self.engine = create_async_engine(Settings().database_uri, echo=True, future=True)
 
 
-async def get_session() -> AsyncSession:
-    session_maker = SessionManager().get_session_maker()
-    async with session_maker() as session:
-        return session
+def with_async_session(func):
+    @wraps(func)
+    async def wrapper(*args, **kwargs):
+        session_maker = SessionManager().get_session_maker()
+        async with session_maker() as session:
+            try:
+                return await func(*args, session=session, **kwargs)
+            except Exception as e:
+                await session.rollback()
+                raise e
+            finally:
+                await session.close()
+
+    return wrapper

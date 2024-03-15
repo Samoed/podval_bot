@@ -50,7 +50,7 @@ extend-select= [
     "RUF", # ruff
 ]
 fix = true
-target-version = "py38"
+target-version = "py310"
 line-length = 120
 
 
