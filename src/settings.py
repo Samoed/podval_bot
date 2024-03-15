@@ -24,6 +24,10 @@ class Settings(BaseSettings):
 
     openai_api_key: str
 
+    recipes_path: str = Field(default="../recipes/result.json")
+    supportive_phrases_path: str = Field(default="../phrases/supportive.json")
+    user_supportive_phrases_path: str = Field(default="../phrases/user_supportive.json")
+
     @property
     def database_settings(self) -> Any:
         """

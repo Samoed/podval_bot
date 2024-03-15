@@ -2,6 +2,11 @@ import random
 from datetime import datetime, time
 
 import pytz
+from llm import LLM
+from logger import get_logger
+from read_recipes import parse_recipes
+from repository import RecipiesRepo, RepoUser
+from settings import Settings
 from telegram import ChatMember, ChatMemberUpdated, Update
 from telegram.constants import ParseMode
 from telegram.ext import (
@@ -12,22 +17,11 @@ from telegram.ext import (
     MessageHandler,
     filters,
 )
-
-from src.llm import LLM
-from src.logger import get_logger
-from src.repository.user import RepoUser
-from src.settings import Settings
-from src.texts import HELP_TEXT, JOIN_MESSAGE, MENU_TEXT, SUPPORTIVE_PHRASES, USER_SUPPORTIVE
-from src.utils import update_table
+from texts import HELP_TEXT, JOIN_MESSAGE, MENU_TEXT, SUPPORTIVE_PHRASES, USER_SUPPORTIVE
+from utils import escape_markdown, update_table
 
 logger = get_logger(__name__)
 settings = Settings()
-
-
-def escape_markdown(text: str) -> str:
-    """https://core.telegram.org/bots/api#markdownv2-style"""
-    escape_chars = r"_*[]()~`>#-|{}.!+="
-    return "".join(f"\\{char}" if char in escape_chars else char for char in text)
 
 
 async def check_birthdays(context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -45,7 +39,7 @@ async def check_birthdays(context: ContextTypes.DEFAULT_TYPE) -> None:
     for user in birthday_users:
         await context.bot.send_message(
             settings.chat_id,
-            text=f"Самое время поздравить {user.username} с Днём Рождения!🎉✨",  # noqa
+            text=f"Самое время поздравить {user.username} с Днём Рождения!🎉✨",
         )
 
 
@@ -78,16 +72,13 @@ def extract_status_change(chat_member_update: ChatMemberUpdated) -> tuple[bool, 
         return None
 
     old_status, new_status = status_change
-    was_member = old_status in [
+    allowed_statuses = [
         ChatMember.MEMBER,
         ChatMember.OWNER,
         ChatMember.ADMINISTRATOR,
-    ] or (old_status == ChatMember.RESTRICTED and old_is_member is True)
-    is_member = new_status in [
-        ChatMember.MEMBER,
-        ChatMember.OWNER,
-        ChatMember.ADMINISTRATOR,
-    ] or (new_status == ChatMember.RESTRICTED and new_is_member is True)
+    ]
+    was_member = old_status in allowed_statuses or (old_status == ChatMember.RESTRICTED and old_is_member is True)
+    is_member = new_status in allowed_statuses or (new_status == ChatMember.RESTRICTED and new_is_member is True)
 
     return was_member, is_member
 
@@ -107,20 +98,13 @@ async def greet_chat_members(update: Update, context: ContextTypes.DEFAULT_TYPE)
         return
 
     was_member, is_member = result
-    member_username = (
-        "@" + update.chat_member.new_chat_member.user.username
-        if update.chat_member.new_chat_member.user.username is not None
-        else update.chat_member.new_chat_member.user.full_name
-    )
+    full_name = update.chat_member.new_chat_member.user.full_name
+    username = update.chat_member.new_chat_member.user.username
+
+    member_username = "@" + username if username is not None else full_name
     member_username = escape_markdown(member_username)
 
-    logger.info(
-        "used_memer username {} real username {} fullname {}".format(
-            member_username,
-            update.chat_member.new_chat_member.user.username,
-            update.chat_member.new_chat_member.user.full_name,
-        )
-    )
+    logger.info(f"used_memer username {member_username} real username {username} fullname {full_name}")
 
     if not was_member and is_member:
         await update.effective_chat.send_message(
@@ -144,7 +128,6 @@ async def sync_birthdays_table(context: ContextTypes.DEFAULT_TYPE) -> None:
         logger.exception(e)
         await context.bot.send_message(settings.admin_chat_id, text=f"Error: {e}")
         return
-    birthday_table = birthday_table.dropna(subset=["Ник в тг", "Имя", "День Рождения"])
     usernames = birthday_table["Ник в тг"].tolist()
     nicknames = birthday_table["Имя"].tolist()
     birthdays = birthday_table["День Рождения"].tolist()
@@ -165,8 +148,20 @@ async def sync_birthdays_table(context: ContextTypes.DEFAULT_TYPE) -> None:
     await context.bot.send_message(settings.admin_chat_id, text=f"Synced table. Created {len(users)} users")
 
 
-# async def good_morning(context: ContextTypes.DEFAULT_TYPE) -> None:
-#     await context.bot.send_message(settings.chat_id, text="Доброе утро, чач!")
+async def find_recipe(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    logger.info("Find recipe")
+    if context.args is None or len(context.args) == 0:
+        await update.message.reply_text("Введите название блюда")
+        return
+
+    dish_name = " ".join(context.args)
+    logger.info(f"Search recipe by name {dish_name}")
+    recipes = await RecipiesRepo.search_recipe_by_name(dish_name)
+    if len(recipes) == 0:
+        await update.message.reply_text("Рецепт не найден")
+        return
+    response_text = "\n".join(rf"\- [{escape_markdown(recipe.name)}]({recipe.link})" for recipe in recipes)
+    await update.message.reply_text(response_text, parse_mode=ParseMode.MARKDOWN_V2)
 
 
 async def ping(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -177,13 +172,15 @@ async def ping(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text("Pong")
 
 
-async def send_menu(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    """Send menu to channel."""
-    logger.info("Sending menu")
+async def create_recipe(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """
+    Create a recipe from a message and send it to the menu channel.
+    """
+    logger.info(f"Create recipe {update.message.chat.id}")
     if update.message is None:
         return
     if update.message.reply_to_message is None or context.args is None or len(context.args) == 0:
-        await update.message.reply_text("Reply to message with menu")
+        await update.message.reply_text("Введите название блюда и его рецепт в ответ на сообщение с рецептом")
         return
 
     dish_name = " ".join(context.args)
@@ -191,6 +188,8 @@ async def send_menu(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await context.bot.send_message(
         settings.menu_channel_id, text=f"{message_url} {dish_name}", parse_mode=ParseMode.MARKDOWN
     )
+    logger.info(f"Menu sent {message_url} {dish_name}")
+    await RecipiesRepo.add_recipe(dish_name, message_url)
     await update.message.reply_text("Menu sent")
 
 
@@ -224,12 +223,18 @@ async def send_support_message(update: Update, context: ContextTypes.DEFAULT_TYP
     await update.message.reply_text(SUPPORTIVE_PHRASES[random.randint(0, len(SUPPORTIVE_PHRASES) - 1)])
 
 
+# async def good_morning(context: ContextTypes.DEFAULT_TYPE) -> None:
+#     await context.bot.send_message(settings.chat_id, text="Доброе утро, чач!")
+
+
 def add_handlers(application: Application) -> None:
     application.add_handler(ChatMemberHandler(greet_chat_members, ChatMemberHandler.CHAT_MEMBER))
-    application.add_handler(CommandHandler("menu", send_menu))
+    application.add_handler(CommandHandler("menu", create_recipe))
+    application.add_handler(CommandHandler("add_recipe", create_recipe))
     application.add_handler(CommandHandler("ping", ping))
     application.add_handler(CommandHandler("show_menu", show_menu))
     application.add_handler(CommandHandler("help", help_command))
+    application.add_handler(CommandHandler("search_recipe", find_recipe))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, send_support_message))
 
 
@@ -243,11 +248,18 @@ def add_jobs(application: Application, time_zone_str: str) -> None:
     application.job_queue.run_daily(send_horoscope, time=time(8, 30, tzinfo=time_zone))
 
 
+async def update_recipes_table(application: Application) -> None:
+    count = await RecipiesRepo.count_recipes()
+    if count == 0:
+        recipes = parse_recipes(settings.recipes_path)
+        await RecipiesRepo.add_recipes(recipes)
+
+
 def main() -> None:
     """Start the bot."""
     logger.info("start bot")
 
-    application = Application.builder().token(settings.token).build()
+    application = Application.builder().token(settings.token).post_init(update_recipes_table).build()
 
     add_handlers(application)
     add_jobs(application, settings.timezone)

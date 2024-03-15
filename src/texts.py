@@ -1,12 +1,15 @@
 import json
 import os
 
+from settings import Settings
+
+settings = Settings()
 directory = os.path.dirname(os.path.abspath(__file__))
 
-with open(os.path.join(directory, "../phrases/supportive.json")) as f:
+with open(os.path.join(directory, settings.supportive_phrases_path)) as f:
     SUPPORTIVE_PHRASES = json.load(f)
 
-with open(os.path.join(directory, "../phrases/user_supportive.json")) as f:
+with open(os.path.join(directory, settings.user_supportive_phrases_path)) as f:
     USER_SUPPORTIVE = json.load(f)
 
 MENU_TEXT = """Альманах рецептов подвала:
@@ -15,8 +18,9 @@ MENU_TEXT = """Альманах рецептов подвала:
 """
 
 HELP_TEXT = """Доступные команды:
-/menu название - отправить меню в канал
+/menu название (или /add_recipe) - отправить меню в канал
 /show_menu - показать ссылку на меню
+/search_recipe название - поиск рецепта по названию
 /ping - пинг бота
 """
 

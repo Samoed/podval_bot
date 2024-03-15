@@ -1,0 +1,1345 @@
+{
+ "name": "Альманах рецептов",
+ "type": "private_channel",
+ "id": 2095191670,
+ "messages": [
+  {
+   "id": 1,
+   "type": "service",
+   "date": "2023-10-22T10:52:09",
+   "date_unixtime": "1697961129",
+   "actor": "Альманах рецептов",
+   "actor_id": "channel2095191670",
+   "action": "create_channel",
+   "title": "Альманах Степиных рецептов",
+   "text": "",
+   "text_entities": []
+  },
+  {
+   "id": 2,
+   "type": "message",
+   "date": "2023-10-22T10:53:07",
+   "date_unixtime": "1697961187",
+   "edited": "2023-11-22T14:57:53",
+   "edited_unixtime": "1700654273",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/239574"
+    },
+    " гуляш"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/239574"
+    },
+    {
+     "type": "plain",
+     "text": " гуляш"
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "type": "message",
+   "date": "2023-10-27T12:08:18",
+   "date_unixtime": "1698397698",
+   "edited": "2023-11-22T14:57:55",
+   "edited_unixtime": "1700654275",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/49401"
+    },
+    " пюре с тунцом"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/49401"
+    },
+    {
+     "type": "plain",
+     "text": " пюре с тунцом"
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "type": "service",
+   "date": "2023-10-27T12:08:29",
+   "date_unixtime": "1698397709",
+   "actor": "Альманах рецептов",
+   "actor_id": "channel2095191670",
+   "action": "edit_group_title",
+   "title": "Альманах рецептов",
+   "text": "",
+   "text_entities": []
+  },
+  {
+   "id": 5,
+   "type": "message",
+   "date": "2023-10-30T17:08:12",
+   "date_unixtime": "1698674892",
+   "edited": "2023-11-22T14:59:04",
+   "edited_unixtime": "1700654344",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/441384"
+    },
+    " борщ"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/441384"
+    },
+    {
+     "type": "plain",
+     "text": " борщ"
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "type": "message",
+   "date": "2023-11-02T09:25:38",
+   "date_unixtime": "1698906338",
+   "edited": "2023-11-22T15:00:29",
+   "edited_unixtime": "1700654429",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/123185"
+    },
+    " пердежный Джо"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/123185"
+    },
+    {
+     "type": "plain",
+     "text": " пердежный Джо"
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "type": "message",
+   "date": "2023-11-14T11:38:40",
+   "date_unixtime": "1699951120",
+   "edited": "2023-11-22T15:01:53",
+   "edited_unixtime": "1700654513",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/446260"
+    },
+    " от Кирюши что-то на охуенном (пельмени)"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/446260"
+    },
+    {
+     "type": "plain",
+     "text": " от Кирюши что-то на охуенном (пельмени)"
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "type": "message",
+   "date": "2023-11-14T12:04:26",
+   "date_unixtime": "1699952666",
+   "edited": "2023-11-22T15:02:48",
+   "edited_unixtime": "1700654568",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/446302"
+    },
+    " ещё пельмени"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/446302"
+    },
+    {
+     "type": "plain",
+     "text": " ещё пельмени"
+    }
+   ]
+  },
+  {
+   "id": 9,
+   "type": "message",
+   "date": "2023-11-18T06:08:11",
+   "date_unixtime": "1700276891",
+   "edited": "2023-11-22T14:57:46",
+   "edited_unixtime": "1700654266",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/446908"
+    },
+    " селёдка под шубой"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/446908"
+    },
+    {
+     "type": "plain",
+     "text": " селёдка под шубой"
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "type": "message",
+   "date": "2023-11-18T06:08:44",
+   "date_unixtime": "1700276924",
+   "edited": "2023-11-22T14:57:01",
+   "edited_unixtime": "1700654221",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/446910"
+    },
+    " ещё селёдка под шубой"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/446910"
+    },
+    {
+     "type": "plain",
+     "text": " ещё селёдка под шубой"
+    }
+   ]
+  },
+  {
+   "id": 11,
+   "type": "message",
+   "date": "2023-11-18T12:45:03",
+   "date_unixtime": "1700300703",
+   "edited": "2023-11-22T14:53:52",
+   "edited_unixtime": "1700654032",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/447640"
+    },
+    " сливочно перечный соус"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/447640"
+    },
+    {
+     "type": "plain",
+     "text": " сливочно перечный соус"
+    }
+   ]
+  },
+  {
+   "id": 12,
+   "type": "message",
+   "date": "2023-11-18T12:47:16",
+   "date_unixtime": "1700300836",
+   "edited": "2023-11-22T15:03:02",
+   "edited_unixtime": "1700654582",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    "Звучит как фреш ",
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/447678"
+    },
+    ""
+   ],
+   "text_entities": [
+    {
+     "type": "plain",
+     "text": "Звучит как фреш "
+    },
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/447678"
+    },
+    {
+     "type": "plain",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": 13,
+   "type": "message",
+   "date": "2023-11-19T09:21:50",
+   "date_unixtime": "1700374910",
+   "edited": "2023-11-22T14:50:54",
+   "edited_unixtime": "1700653854",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/448352"
+    },
+    " шоколадный чизкейк в мультиварке"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/448352"
+    },
+    {
+     "type": "plain",
+     "text": " шоколадный чизкейк в мультиварке"
+    }
+   ]
+  },
+  {
+   "id": 14,
+   "type": "message",
+   "date": "2023-11-23T08:28:32",
+   "date_unixtime": "1700717312",
+   "edited": "2023-11-23T14:52:00",
+   "edited_unixtime": "1700740320",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/429234"
+    },
+    " кальцоне-жульен"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/429234"
+    },
+    {
+     "type": "plain",
+     "text": " кальцоне-жульен"
+    }
+   ]
+  },
+  {
+   "id": 15,
+   "type": "message",
+   "date": "2023-11-23T08:29:13",
+   "date_unixtime": "1700717353",
+   "edited": "2023-11-23T14:53:05",
+   "edited_unixtime": "1700740385",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/370621"
+    },
+    " пирог с клюквой и лимоном"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/370621"
+    },
+    {
+     "type": "plain",
+     "text": " пирог с клюквой и лимоном"
+    }
+   ]
+  },
+  {
+   "id": 16,
+   "type": "message",
+   "date": "2023-11-23T08:29:59",
+   "date_unixtime": "1700717399",
+   "edited": "2023-11-23T14:53:57",
+   "edited_unixtime": "1700740437",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/406255"
+    },
+    " солёная рыба"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/406255"
+    },
+    {
+     "type": "plain",
+     "text": " солёная рыба"
+    }
+   ]
+  },
+  {
+   "id": 17,
+   "type": "message",
+   "date": "2023-11-23T08:30:54",
+   "date_unixtime": "1700717454",
+   "edited": "2023-11-23T14:55:20",
+   "edited_unixtime": "1700740520",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/392535"
+    },
+    " овощные котлеты"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/392535"
+    },
+    {
+     "type": "plain",
+     "text": " овощные котлеты"
+    }
+   ]
+  },
+  {
+   "id": 18,
+   "type": "message",
+   "date": "2023-11-23T08:33:10",
+   "date_unixtime": "1700717590",
+   "edited": "2023-11-23T14:56:36",
+   "edited_unixtime": "1700740596",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/343616"
+    },
+    " рамен"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/343616"
+    },
+    {
+     "type": "plain",
+     "text": " рамен"
+    }
+   ]
+  },
+  {
+   "id": 19,
+   "type": "message",
+   "date": "2023-11-23T08:34:42",
+   "date_unixtime": "1700717682",
+   "edited": "2023-11-23T15:01:55",
+   "edited_unixtime": "1700740915",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/340181"
+    },
+    " кайзершман"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/340181"
+    },
+    {
+     "type": "plain",
+     "text": " кайзершман"
+    }
+   ]
+  },
+  {
+   "id": 20,
+   "type": "message",
+   "date": "2023-11-23T08:36:14",
+   "date_unixtime": "1700717774",
+   "edited": "2023-11-23T16:25:16",
+   "edited_unixtime": "1700745916",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/338439"
+    },
+    " баклажаны парменджано с фаршем"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/338439"
+    },
+    {
+     "type": "plain",
+     "text": " баклажаны парменджано с фаршем"
+    }
+   ]
+  },
+  {
+   "id": 21,
+   "type": "message",
+   "date": "2023-11-23T15:05:52",
+   "date_unixtime": "1700741152",
+   "edited": "2023-11-23T16:26:40",
+   "edited_unixtime": "1700746000",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    "Картошка по корейски ",
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/417052"
+    },
+    ""
+   ],
+   "text_entities": [
+    {
+     "type": "plain",
+     "text": "Картошка по корейски "
+    },
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/417052"
+    },
+    {
+     "type": "plain",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": 22,
+   "type": "message",
+   "date": "2023-11-23T16:05:00",
+   "date_unixtime": "1700744700",
+   "edited": "2023-11-23T16:27:37",
+   "edited_unixtime": "1700746057",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/434843"
+    },
+    " хреновина / аджика"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/434843"
+    },
+    {
+     "type": "plain",
+     "text": " хреновина / аджика"
+    }
+   ]
+  },
+  {
+   "id": 23,
+   "type": "message",
+   "date": "2023-11-23T16:05:27",
+   "date_unixtime": "1700744727",
+   "edited": "2023-11-23T16:28:38",
+   "edited_unixtime": "1700746118",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/427164"
+    },
+    " малосольные ВАХ огурчики"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/427164"
+    },
+    {
+     "type": "plain",
+     "text": " малосольные ВАХ огурчики"
+    }
+   ]
+  },
+  {
+   "id": 24,
+   "type": "message",
+   "date": "2023-11-23T16:05:53",
+   "date_unixtime": "1700744753",
+   "edited": "2023-11-23T16:29:44",
+   "edited_unixtime": "1700746184",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/416492"
+    },
+    " битые огурцы"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/416492"
+    },
+    {
+     "type": "plain",
+     "text": " битые огурцы"
+    }
+   ]
+  },
+  {
+   "id": 25,
+   "type": "message",
+   "date": "2023-11-23T16:06:19",
+   "date_unixtime": "1700744779",
+   "edited": "2023-11-23T16:30:40",
+   "edited_unixtime": "1700746240",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/406468"
+    },
+    " шарлотка охуевозная"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/406468"
+    },
+    {
+     "type": "plain",
+     "text": " шарлотка охуевозная"
+    }
+   ]
+  },
+  {
+   "id": 26,
+   "type": "message",
+   "date": "2023-11-23T16:07:11",
+   "date_unixtime": "1700744831",
+   "edited": "2023-11-23T16:31:31",
+   "edited_unixtime": "1700746291",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/360407"
+    },
+    " блины"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/360407"
+    },
+    {
+     "type": "plain",
+     "text": " блины"
+    }
+   ]
+  },
+  {
+   "id": 27,
+   "type": "message",
+   "date": "2023-11-23T16:07:51",
+   "date_unixtime": "1700744871",
+   "edited": "2023-11-23T16:32:15",
+   "edited_unixtime": "1700746335",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/449537"
+    },
+    " паста"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/449537"
+    },
+    {
+     "type": "plain",
+     "text": " паста"
+    }
+   ]
+  },
+  {
+   "id": 28,
+   "type": "message",
+   "date": "2023-11-23T16:10:38",
+   "date_unixtime": "1700745038",
+   "edited": "2023-11-23T16:33:19",
+   "edited_unixtime": "1700746399",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/433485"
+    },
+    " драники"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/433485"
+    },
+    {
+     "type": "plain",
+     "text": " драники"
+    }
+   ]
+  },
+  {
+   "id": 29,
+   "type": "message",
+   "date": "2023-11-23T16:10:55",
+   "date_unixtime": "1700745055",
+   "edited": "2023-11-23T16:34:02",
+   "edited_unixtime": "1700746442",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/433489"
+    },
+    " ещё драники"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/433489"
+    },
+    {
+     "type": "plain",
+     "text": " ещё драники"
+    }
+   ]
+  },
+  {
+   "id": 30,
+   "type": "message",
+   "date": "2023-11-23T16:14:08",
+   "date_unixtime": "1700745248",
+   "edited": "2023-11-23T16:35:12",
+   "edited_unixtime": "1700746512",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/423448"
+    },
+    " брауни"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/423448"
+    },
+    {
+     "type": "plain",
+     "text": " брауни"
+    }
+   ]
+  },
+  {
+   "id": 31,
+   "type": "message",
+   "date": "2023-11-23T16:16:51",
+   "date_unixtime": "1700745411",
+   "edited": "2023-11-23T16:36:47",
+   "edited_unixtime": "1700746607",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/386279"
+    },
+    " окрошка"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/386279"
+    },
+    {
+     "type": "plain",
+     "text": " окрошка"
+    }
+   ]
+  },
+  {
+   "id": 32,
+   "type": "message",
+   "date": "2023-11-23T16:20:22",
+   "date_unixtime": "1700745622",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/323737"
+    },
+    " панкейки"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/323737"
+    },
+    {
+     "type": "plain",
+     "text": " панкейки"
+    }
+   ]
+  },
+  {
+   "id": 37,
+   "type": "message",
+   "date": "2023-12-10T18:34:14",
+   "date_unixtime": "1702222454",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "author": "ЭВОН бот",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/457115"
+    },
+    " вкусный салат из прайма"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/457115"
+    },
+    {
+     "type": "plain",
+     "text": " вкусный салат из прайма"
+    }
+   ]
+  },
+  {
+   "id": 39,
+   "type": "message",
+   "date": "2023-12-15T17:09:22",
+   "date_unixtime": "1702649362",
+   "edited": "2023-12-15T17:15:20",
+   "edited_unixtime": "1702649720",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "author": "ЭВОН бот",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/459108"
+    },
+    " пряники Козули"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/459108"
+    },
+    {
+     "type": "plain",
+     "text": " пряники Козули"
+    }
+   ]
+  },
+  {
+   "id": 40,
+   "type": "message",
+   "date": "2023-12-19T22:54:21",
+   "date_unixtime": "1703015661",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "author": "ЭВОН бот",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/460777"
+    },
+    " Пирожное картошка"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/460777"
+    },
+    {
+     "type": "plain",
+     "text": " Пирожное картошка"
+    }
+   ]
+  },
+  {
+   "id": 41,
+   "type": "message",
+   "date": "2023-12-19T23:53:00",
+   "date_unixtime": "1703019180",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "author": "ЭВОН бот",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/460797"
+    },
+    " Шоколадная колбаса"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/460797"
+    },
+    {
+     "type": "plain",
+     "text": " Шоколадная колбаса"
+    }
+   ]
+  },
+  {
+   "id": 42,
+   "type": "message",
+   "date": "2023-12-20T19:44:06",
+   "date_unixtime": "1703090646",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "author": "ЭВОН бот",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/461250"
+    },
+    " Колбаса сладкая"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/461250"
+    },
+    {
+     "type": "plain",
+     "text": " Колбаса сладкая"
+    }
+   ]
+  },
+  {
+   "id": 43,
+   "type": "message",
+   "date": "2023-12-23T13:27:53",
+   "date_unixtime": "1703327273",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "author": "ЭВОН бот",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/462407"
+    },
+    " тревожные творожные вафли"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/462407"
+    },
+    {
+     "type": "plain",
+     "text": " тревожные творожные вафли"
+    }
+   ]
+  },
+  {
+   "id": 44,
+   "type": "message",
+   "date": "2023-12-25T17:45:32",
+   "date_unixtime": "1703515532",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "author": "ЭВОН бот",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/463066"
+    },
+    " красная рыба слабой соли под подушкой из апельсинов и укропа"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/463066"
+    },
+    {
+     "type": "plain",
+     "text": " красная рыба слабой соли под подушкой из апельсинов и укропа"
+    }
+   ]
+  },
+  {
+   "id": 45,
+   "type": "message",
+   "date": "2024-02-02T19:41:09",
+   "date_unixtime": "1706892069",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "author": "ЭВОН бот",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/481985"
+    },
+    " творожные вафли"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/481985"
+    },
+    {
+     "type": "plain",
+     "text": " творожные вафли"
+    }
+   ]
+  },
+  {
+   "id": 46,
+   "type": "message",
+   "date": "2024-02-02T19:41:41",
+   "date_unixtime": "1706892101",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "author": "ЭВОН бот",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/481984"
+    },
+    " творожные вафли"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/481984"
+    },
+    {
+     "type": "plain",
+     "text": " творожные вафли"
+    }
+   ]
+  },
+  {
+   "id": 47,
+   "type": "message",
+   "date": "2024-02-02T19:42:24",
+   "date_unixtime": "1706892144",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "author": "ЭВОН бот",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/481992"
+    },
+    " фестиваль вафель"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/481992"
+    },
+    {
+     "type": "plain",
+     "text": " фестиваль вафель"
+    }
+   ]
+  },
+  {
+   "id": 48,
+   "type": "message",
+   "date": "2024-02-02T19:55:25",
+   "date_unixtime": "1706892925",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "author": "ЭВОН бот",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/480269"
+    },
+    " Синабоны из твиттера"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/480269"
+    },
+    {
+     "type": "plain",
+     "text": " Синабоны из твиттера"
+    }
+   ]
+  },
+  {
+   "id": 49,
+   "type": "message",
+   "date": "2024-02-21T01:57:13",
+   "date_unixtime": "1708469833",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "author": "ЭВОН бот",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/493974"
+    },
+    " охуенный соус для жареной курицы"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/493974"
+    },
+    {
+     "type": "plain",
+     "text": " охуенный соус для жареной курицы"
+    }
+   ]
+  },
+  {
+   "id": 50,
+   "type": "message",
+   "date": "2024-02-21T01:57:39",
+   "date_unixtime": "1708469859",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "author": "ЭВОН бот",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/493972"
+    },
+    " белый русский на молоке с бананом"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/493972"
+    },
+    {
+     "type": "plain",
+     "text": " белый русский на молоке с бананом"
+    }
+   ]
+  },
+  {
+   "id": 51,
+   "type": "message",
+   "date": "2024-02-23T16:33:13",
+   "date_unixtime": "1708695193",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "author": "ЭВОН бот",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/495427"
+    },
+    " Коул слоу"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/495427"
+    },
+    {
+     "type": "plain",
+     "text": " Коул слоу"
+    }
+   ]
+  },
+  {
+   "id": 52,
+   "type": "message",
+   "date": "2024-02-23T16:39:58",
+   "date_unixtime": "1708695598",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "author": "ЭВОН бот",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/495450"
+    },
+    " Коул-слоу от шефа"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/495450"
+    },
+    {
+     "type": "plain",
+     "text": " Коул-слоу от шефа"
+    }
+   ]
+  },
+  {
+   "id": 53,
+   "type": "message",
+   "date": "2024-02-29T17:23:23",
+   "date_unixtime": "1709216603",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "author": "ЭВОН бот",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/498680"
+    },
+    " Школьная пицца"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/498680"
+    },
+    {
+     "type": "plain",
+     "text": " Школьная пицца"
+    }
+   ]
+  },
+  {
+   "id": 54,
+   "type": "message",
+   "date": "2024-03-03T14:37:11",
+   "date_unixtime": "1709465831",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "author": "ЭВОН бот",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/499850"
+    },
+    " ребра в духовке"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/499850"
+    },
+    {
+     "type": "plain",
+     "text": " ребра в духовке"
+    }
+   ]
+  },
+  {
+   "id": 55,
+   "type": "message",
+   "date": "2024-03-03T14:37:31",
+   "date_unixtime": "1709465851",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "author": "ЭВОН бот",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/499840"
+    },
+    " ребра в духовке с горчицей"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/499840"
+    },
+    {
+     "type": "plain",
+     "text": " ребра в духовке с горчицей"
+    }
+   ]
+  },
+  {
+   "id": 56,
+   "type": "message",
+   "date": "2024-03-05T17:09:34",
+   "date_unixtime": "1709647774",
+   "from": "Альманах рецептов",
+   "from_id": "channel2095191670",
+   "author": "ЭВОН бот",
+   "text": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/501088"
+    },
+    " Домашний картофель по-деревенски + сметанно-чесночный соус"
+   ],
+   "text_entities": [
+    {
+     "type": "link",
+     "text": "https://t.me/c/1563220312/501088"
+    },
+    {
+     "type": "plain",
+     "text": " Домашний картофель по-деревенски + сметанно-чесночный соус"
+    }
+   ]
+  }
+ ]
+}
