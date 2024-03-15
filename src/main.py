@@ -5,7 +5,7 @@ import pytz
 from llm import LLM
 from logger import get_logger
 from read_recipes import parse_recipes
-from repository import RecipiesRepo, RepoUser
+from repository import RecipiesRepo, UserRepo
 from settings import Settings
 from telegram import ChatMember, ChatMemberUpdated, Update
 from telegram.constants import ParseMode
@@ -28,7 +28,7 @@ async def check_birthdays(context: ContextTypes.DEFAULT_TYPE) -> None:
     """Check if there are any birthdays today and send a message to the chat."""
     logger.info("Checking birthdays")
     try:
-        birthday_users = await RepoUser.get_users_with_birthday(datetime.now(pytz.timezone(settings.timezone)))
+        birthday_users = await UserRepo.get_users_with_birthday(datetime.now(pytz.timezone(settings.timezone)))
     except Exception as e:
         logger.exception(e)
         await context.bot.send_message(settings.admin_chat_id, text=f"Error: {e}")
@@ -132,7 +132,7 @@ async def sync_birthdays_table(context: ContextTypes.DEFAULT_TYPE) -> None:
     nicknames = birthday_table["Имя"].tolist()
     birthdays = birthday_table["День Рождения"].tolist()
     try:
-        (users, removed_users) = await RepoUser.create_or_update_users(usernames, nicknames, birthdays)
+        (users, removed_users) = await UserRepo.create_or_update_users(usernames, nicknames, birthdays)
     except Exception as e:
         logger.exception(e)
         await context.bot.send_message(settings.admin_chat_id, text=f"Error: {e}")

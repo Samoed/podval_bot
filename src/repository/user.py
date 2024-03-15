@@ -6,7 +6,7 @@ from sqlalchemy import delete, extract, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 
-class RepoUser:
+class UserRepo:
     @staticmethod
     @with_async_session
     async def create_user(username: str, nickname: str, birthday: datetime, session: AsyncSession) -> User:
@@ -69,5 +69,5 @@ class RepoUser:
                 new_users.append(User(username=username, nickname=nickname, birthday=birthday))
         session.add_all(new_users)
         await session.commit()
-        to_delete_users = await RepoUser.remove_users(fixed_usernames, session)
+        to_delete_users = await UserRepo.remove_users(fixed_usernames, session)
         return new_users, to_delete_users

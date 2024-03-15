@@ -14,7 +14,7 @@ install-linting:
 
 .PHONY: format
 format:
-	pre-commit run --all-files
+	$(poetry) ruff $(DIRS)
 	mypy $(DIRS)
 
 .PHONY: export-dependencies
