@@ -37,5 +37,7 @@ services:
     depends_on:
       database:
         condition: service_healthy
+      migrate_db:
+        condition: service_completed_successfully
     environment:
       POSTGRES_HOST: database

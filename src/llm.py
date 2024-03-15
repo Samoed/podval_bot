@@ -1,7 +1,6 @@
 from openai import OpenAI
-
-from src.settings import Settings
-from src.texts import HOROSCOPE_PROMPT
+from settings import Settings
+from texts import HOROSCOPE_PROMPT
 
 
 class LLM:

@@ -1,8 +1,7 @@
 from functools import wraps
 
+from settings import Settings
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
-
-from src.settings import Settings
 
 
 class SessionManager:

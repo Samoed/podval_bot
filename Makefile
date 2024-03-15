@@ -26,6 +26,10 @@ export-dependencies:
 database:
 	docker compose up database -d
 
+.PHONY: bot
+bot:
+	docker compose up bot -d --build
+
 .PHONY: test
 test:
 	poetry run pytest --cov=app --cov-report=html
