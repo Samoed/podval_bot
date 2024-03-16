@@ -12,6 +12,8 @@ with open(os.path.join(directory, settings.supportive_phrases_path)) as f:
 with open(os.path.join(directory, settings.user_supportive_phrases_path)) as f:
     USER_SUPPORTIVE = json.load(f)
 
+print("Loaded phrases from json files", len(SUPPORTIVE_PHRASES), len(USER_SUPPORTIVE))
+
 MENU_TEXT = """Альманах рецептов подвала:
 - [Таблица](https://docs.google.com/spreadsheets/d/1RWEh_VfmwvQC7PUXSIAjYruSO-cVYerEMvCcNu0H2EM/edit?usp=drivesdk)
 - [Канал](https://t.me/+JemdAcrclhIzODcy)
