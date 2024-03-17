@@ -69,5 +69,7 @@ class UserRepo:
                 new_users.append(User(username=username, nickname=nickname, birthday=birthday))
         session.add_all(new_users)
         await session.commit()
-        to_delete_users = await UserRepo.remove_users(fixed_usernames, session)
+        to_delete_users = []
+        if len(fixed_usernames) > 0:
+            to_delete_users = await UserRepo.remove_users(fixed_usernames)
         return new_users, to_delete_users
