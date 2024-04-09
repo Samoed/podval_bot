@@ -69,6 +69,7 @@ python_version = "3.10"
 strict = true
 warn_redundant_casts = true
 plugins = ["pydantic.mypy"]
+mypy_path = "src"
 
 [[tool.mypy.overrides]]
 module = [

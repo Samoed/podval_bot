@@ -1,4 +1,7 @@
+import html
+import json
 import random
+import traceback
 from datetime import datetime, time
 
 import pytz
@@ -27,12 +30,8 @@ settings = Settings()
 async def check_birthdays(context: ContextTypes.DEFAULT_TYPE) -> None:
     """Check if there are any birthdays today and send a message to the chat."""
     logger.info("Checking birthdays")
-    try:
-        birthday_users = await UserRepo.get_users_with_birthday(datetime.now(pytz.timezone(settings.timezone)))
-    except Exception as e:
-        logger.exception(e)
-        await context.bot.send_message(settings.admin_chat_id, text=f"Error: {e}")
-        return
+    birthday_users = await UserRepo.get_users_with_birthday(datetime.now(pytz.timezone(settings.timezone)))
+
     if len(birthday_users) == 0:
         await context.bot.send_message(settings.admin_chat_id, text="No birthdays today")
         return
@@ -46,12 +45,8 @@ async def check_birthdays(context: ContextTypes.DEFAULT_TYPE) -> None:
 async def send_horoscope(context: ContextTypes.DEFAULT_TYPE) -> None:
     """Send horoscope to the chat."""
     logger.info("Sending horoscope")
-    try:
-        horoscope = LLM.generate_horoscope()
-    except Exception as e:
-        logger.exception(e)
-        await context.bot.send_message(settings.admin_chat_id, text=f"Error: {e}")
-        return
+    horoscope = LLM.generate_horoscope()
+
     await context.bot.send_message(
         settings.chat_id,
         text=horoscope,
@@ -122,21 +117,13 @@ async def greet_chat_members(update: Update, context: ContextTypes.DEFAULT_TYPE)
 async def sync_birthdays_table(context: ContextTypes.DEFAULT_TYPE) -> None:
     """Sync birthdays table with database."""
     logger.info("Syncing birthdays table with database")
-    try:
-        birthday_table = await update_table(settings.sheet_id, settings.sheet_name)
-    except Exception as e:
-        logger.exception(e)
-        await context.bot.send_message(settings.admin_chat_id, text=f"Error: {e}")
-        return
+
+    birthday_table = await update_table(settings.sheet_id, settings.sheet_name)
     usernames = birthday_table["Ник в тг"].tolist()
     nicknames = birthday_table["Имя"].tolist()
     birthdays = birthday_table["День Рождения"].tolist()
-    try:
-        (users, removed_users) = await UserRepo.create_or_update_users(usernames, nicknames, birthdays)
-    except Exception as e:
-        logger.exception(e)
-        await context.bot.send_message(settings.admin_chat_id, text=f"Error: {e}")
-        return
+
+    users, removed_users = await UserRepo.create_or_update_users(usernames, nicknames, birthdays)
     logger.info(
         "Created {} users: {}. Removed {} users from database: {}".format(
             len(users),
@@ -223,6 +210,26 @@ async def send_support_message(update: Update, context: ContextTypes.DEFAULT_TYP
     await update.message.reply_text(SUPPORTIVE_PHRASES[random.randint(0, len(SUPPORTIVE_PHRASES) - 1)])
 
 
+async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Log the error and send a telegram message to notify the developer."""
+    # https://github.com/python-telegram-bot/python-telegram-bot/blob/master/examples/errorhandlerbot.py
+    logger.error("Exception while handling an update:", exc_info=context.error)
+
+    tb_list = traceback.format_exception(None, context.error, context.error.__traceback__)
+    tb_string = "".join(tb_list)
+
+    update_str = update.to_dict() if isinstance(update, Update) else str(update)
+    message = (
+        "An exception was raised while handling an update\n"
+        f"<pre>update = {html.escape(json.dumps(update_str, indent=2, ensure_ascii=False))}"
+        "</pre>\n\n"
+        f"<pre>context.chat_data = {html.escape(str(context.chat_data))}</pre>\n\n"
+        f"<pre>context.user_data = {html.escape(str(context.user_data))}</pre>\n\n"
+        f"<pre>{html.escape(tb_string)}</pre>"
+    )
+    await context.bot.send_message(settings.admin_chat_id, text=message, parse_mode=ParseMode.HTML)
+
+
 # async def good_morning(context: ContextTypes.DEFAULT_TYPE) -> None:
 #     await context.bot.send_message(settings.chat_id, text="Доброе утро, чач!")
 
@@ -263,6 +270,7 @@ def main() -> None:
 
     add_handlers(application)
     add_jobs(application, settings.timezone)
+    application.add_error_handler(error_handler)
 
     application.run_polling(allowed_updates=Update.ALL_TYPES)
 
