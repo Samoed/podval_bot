@@ -242,7 +242,7 @@ def add_handlers(application: Application) -> None:
     application.add_handler(CommandHandler("show_menu", show_menu))
     application.add_handler(CommandHandler("help", help_command))
     application.add_handler(CommandHandler("search_recipe", find_recipe))
-    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, send_support_message))
+    # application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, send_support_message))
 
 
 def add_jobs(application: Application, time_zone_str: str) -> None:
