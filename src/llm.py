@@ -16,7 +16,7 @@ class LLM:
                     "content": prompt,
                 }
             ],
-            model="gpt-3.5-turbo",
+            model="gpt-4o-mini",
         )
         return response.choices[0].message.content if response.choices[0].message.content is not None else ""
 
