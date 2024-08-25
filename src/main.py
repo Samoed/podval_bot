@@ -17,8 +17,6 @@ from telegram.ext import (
     ChatMemberHandler,
     CommandHandler,
     ContextTypes,
-    MessageHandler,
-    filters,
 )
 from texts import HELP_TEXT, JOIN_MESSAGE, MENU_TEXT, SUPPORTIVE_PHRASES, USER_SUPPORTIVE
 from utils import escape_markdown, update_table
