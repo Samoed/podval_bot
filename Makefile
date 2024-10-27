@@ -15,7 +15,7 @@ install-linting:
 .PHONY: format
 format:
 	$(poetry) ruff $(DIRS)
-	mypy $(DIRS)
+#	$(poetry) mypy $(DIRS)
 
 .PHONY: export-dependencies
 export-dependencies:

@@ -250,7 +250,7 @@ def add_jobs(application: Application, time_zone_str: str) -> None:
     application.job_queue.run_daily(sync_birthdays_table, time=time(8, tzinfo=time_zone))
     application.job_queue.run_daily(check_birthdays, time=time(9, tzinfo=time_zone))
     # application.job_queue.run_daily(good_morning, time=time(8, tzinfo=time_zone))
-    application.job_queue.run_daily(send_horoscope, time=time(8, 30, tzinfo=time_zone))
+    # application.job_queue.run_daily(send_horoscope, time=time(8, 30, tzinfo=time_zone))
 
 
 async def update_recipes_table(application: Application) -> None:
